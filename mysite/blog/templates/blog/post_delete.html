@@ -1,0 +1,8 @@
+<h1>정말 삭제하시겠어요?</h1>
+<p>글 제목: <strong>{{ post.title }}</strong></p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">✅ 네, 삭제할게요</button>
+    <a href="{% url 'post_detail' post.pk %}">❌ 아니요, 돌아갈래요</a>
+</form>

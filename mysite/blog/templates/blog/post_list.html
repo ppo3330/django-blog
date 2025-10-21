@@ -1,0 +1,13 @@
+<h1>📜 블로그 글 목록</h1>
+
+{% for post in posts %}
+    <div>
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.content|truncatewords:20 }}</p>  <!-- 20단어만 미리보기 -->
+        <hr>
+    </div>
+{% empty %}
+    <p>아직 작성된 글이 없습니다.</p>
+{% endfor %}
+
+<a href="{% url 'post_new' %}">✏️ 새 글 작성</a>
