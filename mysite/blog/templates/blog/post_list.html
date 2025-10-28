@@ -1,5 +1,14 @@
 <h1>📜 블로그 글 목록</h1>
 
+<!-- 검색창 시작 -->
+<form method="GET" action="{% url 'post_list' %}">
+    <input type="text" name="q" placeholder="검색어를 입력하세요" value="{{ request.GET.q }}">
+    <button type="submit">검색</button>
+</form>
+<hr>
+<!-- 검색창 끝 -->
+
+
 {% for post in posts %}
     <div>
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>

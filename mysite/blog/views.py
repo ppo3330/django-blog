@@ -3,8 +3,17 @@ from .models import Post
 from .forms import PostForm
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    query = request.GET.get('q')
+    if query:
+        #제목이나 내용에 검색어가 포함된 글만 검색
+        posts = Post.objects.filter(title__icontains=query) | Post.objects.filter(content__icontains=query)
+    else:
+        #검색어가 없을 때는 전체 글 (최신순 정렬)
+        posts = Post.objects.all()
+    #항상 최신 글이 위로 오게 정렬
+    posts = posts.order_by('-created_at')
+    #검색어도 함께 템플릿으로 전달 (검색창에 유지용)
+    return render(request, 'blog/post_list.html', {'posts': posts, 'query': query})
 
 def post_new(request):
     if request.method == "POST":
