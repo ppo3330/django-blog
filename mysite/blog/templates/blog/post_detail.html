@@ -2,5 +2,5 @@
 <p>{{ post.content }}</p>
 <p>작성일: {{ post.created_at }}</p>
 <a href="{% url 'post_list' %}">목록으로 돌아가기</a>
-<a href="{% url 'post_edit' post.pk %}">✏️ 수정</a>
-<a href="{% url 'post_delete' post.pk %}">🗑️ 삭제</a>
+<a href="{% url 'post_edit' post.pk %}">수정</a>
+<a href="{% url 'post_delete' post.pk %}">삭제</a>

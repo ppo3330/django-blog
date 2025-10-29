@@ -1,4 +1,4 @@
-<h1>📜 블로그 글 목록</h1>
+<h1>블로그 글 목록</h1>
 
 <!-- 검색창 시작 -->
 <form method="GET" action="{% url 'post_list' %}">
@@ -9,7 +9,7 @@
 <!-- 검색창 끝 -->
 
 
-{% for post in posts %}
+{% for post in page_obj %}
     <div>
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.content|truncatewords:20 }}</p>  <!-- 20단어만 미리보기 -->
@@ -18,5 +18,20 @@
 {% empty %}
     <p>아직 작성된 글이 없습니다.</p>
 {% endfor %}
+
+<!-- 페이지네이션 -->
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %}
+
+    <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}">다음</a>
+    {% endif %}
+</div>
+
+<hr>
 
 <a href="{% url 'post_new' %}">✏️ 새 글 작성</a>
