@@ -1,18 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
 <h1>블로그 글 목록</h1>
 
-<!-- 검색창 시작 -->
+<!-- 검색창 -->
 <form method="GET" action="{% url 'post_list' %}">
-    <input type="text" name="q" placeholder="검색어를 입력하세요" value="{{ request.GET.q }}">
+    <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
     <button type="submit">검색</button>
 </form>
-<hr>
-<!-- 검색창 끝 -->
 
-
+<!-- 글 목록 -->
 {% for post in page_obj %}
     <div>
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.content|truncatewords:20 }}</p>  <!-- 20단어만 미리보기 -->
+        <p>{{ post.content|truncatewords:20 }}</p>
         <hr>
     </div>
 {% empty %}
@@ -34,4 +35,4 @@
 
 <hr>
 
-<a href="{% url 'post_new' %}">✏️ 새 글 작성</a>
+<a href="{% url 'post_new' %}">새 글 작성</a>

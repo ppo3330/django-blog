@@ -1,0 +1,164 @@
+/* === Notion 느낌의 미니멀 블로그 스타일 === */
+
+/* --- 전체 페이지 --- */
+body {
+  font-family: "Pretendard", "Inter", "Noto Sans KR", sans-serif;
+  background-color: #fafafa;
+  color: #2f2f2f;
+  max-width: 720px;
+  margin: 50px auto;
+  padding: 0 20px 80px;
+  line-height: 1.8;
+  letter-spacing: -0.2px;
+}
+
+/* --- 제목 영역 --- */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 12px 0 8px;
+}
+
+p {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* --- 입력창, 버튼 --- */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #a5b4fc;
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+}
+
+/* --- 기본 버튼 --- */
+button,
+a.button {
+  display: inline-block;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+  background-color: #6366f1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover,
+a.button:hover {
+  background-color: #4f46e5;
+  transform: translateY(-1px);
+}
+
+/* --- 삭제용 버튼 (빨강) --- */
+.btn-danger {
+  background-color: #ef4444;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+/* --- 카드형 포스트 --- */
+.post-card {
+  background-color: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.post-card h2 a {
+  text-decoration: none;
+  color: #1e1e1e;
+}
+
+.post-card h2 a:hover {
+  color: #6366f1;
+}
+
+/* --- 페이지네이션 --- */
+.pagination {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #555;
+  background-color: #f1f1f1;
+  transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+  background-color: #e5e5e5;
+}
+
+.pagination .current {
+  background-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* --- 헤더/푸터 --- */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+footer {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-top: 80px;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 600px) {
+  body {
+    padding: 0 14px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .post-card {
+    padding: 18px;
+  }
+}

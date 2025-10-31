@@ -1,7 +1,11 @@
-<h1>글 수정</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
+<h1>글 수정하기</h1>
 
 <form method="POST">
-    {% csrf_token %}      <!-- 보안 토큰 -->
-    {{ form.as_p }}       <!-- 폼 필드 표시 -->
+    {% csrf_token %}
+    {{ form.as_p }}
     <button type="submit">수정 완료</button>
+    <a href="{% url 'post_detail' post.pk %}">취소</a>
 </form>

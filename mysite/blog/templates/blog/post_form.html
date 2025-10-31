@@ -1,6 +1,12 @@
-<h1>새 글 작성</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
+<h1>{% if form.instance.pk %}글 수정{% else %}새 글 작성{% endif %}</h1>
+
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">저장</button>
+    <button type="submit">{% if form.instance.pk %}수정 완료{% else %}작성{% endif %}</button>
 </form>
+
+<a href="{% url 'post_list' %}">취소</a>

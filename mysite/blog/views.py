@@ -36,15 +36,15 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)      #수정할 글을 DB에서 불러오기. 없으면 404 에러
-    if request.method == "POST":               #수정 폼이 제출된 경우
-        form = PostForm(request.POST, instance=post)  #기존 글을 폼에 연결
-        if form.is_valid():                    #입력값이 유효하면
-            form.save()                        #DB에 저장 (수정된 내용 반영)
-            return redirect('post_detail', pk=post.pk)  #수정 후 상세 페이지로 이동
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=post.pk)
     else:
-        form = PostForm(instance=post)         #처음 열었을 때 기존 내용이 담긴 폼을 보여줌
-    return render(request, 'blog/post_edit.html', {'form': form})  #템플릿에 폼 전달
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form, 'post': post})
 
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)    #삭제할 글을 DB에서 찾기
