@@ -11,3 +11,29 @@
 <a href="{% url 'post_edit' post.pk %}">수정</a> |
 <a href="{% url 'post_delete' post.pk %}">삭제</a> |
 <a href="{% url 'post_list' %}">목록으로</a>
+
+<hr>
+<h3>댓글</h3>
+
+<!-- 댓글 목록 -->
+{% for comment in comments %}
+    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd;">
+        <p><strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }})</p>
+        <p>{{ comment.content }}</p>
+
+        <form action="{% url 'comment_delete' comment.pk %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="color:red;">삭제</button>
+        </form>
+    </div>
+{% empty %}
+    <p>아직 댓글이 없습니다.</p>
+{% endfor %}
+
+<!-- 댓글 작성 폼 -->
+<h4>댓글 작성하기</h4>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">댓글 등록</button>
+</form>

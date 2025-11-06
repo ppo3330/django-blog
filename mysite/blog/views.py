@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Post
-from .forms import PostForm
+from blog.models import Comment
+from .forms import PostForm, CommentForm
 
 def post_list(request):
     query = request.GET.get('q')
@@ -32,8 +33,25 @@ def post_new(request):
     return render(request, 'blog/post_form.html', {'form': form})
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    post = get_object_or_404(Post, pk=pk)   
+    comments = post.comments.all().order_by('-created_at')
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+
+    return render(request, 'blog/post_detail.html', {
+        'post': post,
+        'comments': comments,
+        'form': form,
+    })
+
 
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -52,3 +70,13 @@ def post_delete(request, pk):
         post.delete()                        #DB에서 삭제 실행
         return redirect('post_list')         #삭제 후 글 목록 페이지로 이동
     return render(request, 'blog/post_delete.html', {'post': post})  #삭제 확인 페이지 보여주기
+
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    post_pk = comment.post.pk  # 댓글이 달린 글 번호 저장
+
+    if request.method == "POST":  # 삭제 눌렀을 때
+        comment.delete()
+        return redirect('post_detail', pk=post_pk)
+
+    return render(request, 'blog/comment_confirm_delete.html', {'comment': comment})
