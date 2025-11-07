@@ -10,5 +10,13 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['author', 'content']
+        widgets = {
+            'content': forms.Textarea(attrs={
+                'rows': 3,
+                'cols': 50,
+                'style': 'resize: none;'
+            }),
+            'author': forms.TextInput(attrs={'size': 30})
+        }
 
     

@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
+<h1>댓글 수정</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div style="margin-top: 15px;">
+        <button type="submit" 
+                <button type="submit" class="btn btn-primary">저장</button>
+        </button>
+        <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">취소</a>
+    </div>
+</form>

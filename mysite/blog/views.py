@@ -34,7 +34,7 @@ def post_new(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)   
-    comments = post.comments.all().order_by('-created_at')
+    comments = post.comments.all().order_by('created_at')
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -70,6 +70,20 @@ def post_delete(request, pk):
         post.delete()                        #DB에서 삭제 실행
         return redirect('post_list')         #삭제 후 글 목록 페이지로 이동
     return render(request, 'blog/post_delete.html', {'post': post})  #삭제 확인 페이지 보여주기
+
+def comment_edit(request, post_pk, comment_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/comment_edit.html', {'form': form, 'post': post, 'comment': comment})
 
 def comment_delete(request, pk):
     comment = get_object_or_404(Comment, pk=pk)

@@ -6,6 +6,6 @@
 
 <form method="POST">
     {% csrf_token %}
-    <button type="submit">삭제</button>
-    <a href="{% url 'post_detail' post.pk %}">취소</a>
+    <button type="submit" class="btn btn-danger">삭제</button>
+    <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">취소</a>
 </form>

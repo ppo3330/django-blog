@@ -68,19 +68,34 @@ a.button {
   transition: all 0.2s ease;
 }
 
-button:hover,
-a.button:hover {
-  background-color: #4f46e5;
-  transform: translateY(-1px);
+/* 초록색: 저장 / 작성 */
+.btn-primary, button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
 }
 
-/* --- 삭제용 버튼 (빨강) --- */
+.btn-primary:hover, button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* 회색: 취소 / 돌아가기 */
+.btn-secondary {
+    background-color: #888;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #777;
+}
+
+/* 빨간색: 삭제 */
 .btn-danger {
-  background-color: #ef4444;
+    background-color: #e74c3c;
+    color: white;
 }
 
 .btn-danger:hover {
-  background-color: #dc2626;
+    background-color: #c0392b;
 }
 
 /* --- 카드형 포스트 --- */
@@ -161,4 +176,68 @@ footer {
   .post-card {
     padding: 18px;
   }
+}
+
+/* --- 댓글 영역 --- */
+.comment-section {
+  margin-top: 40px;
+}
+
+.comment-box {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.comment-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.comment-box p {
+  margin: 6px 0;
+}
+
+.comment-meta {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+/* --- 댓글 버튼 --- */
+.comment-actions {
+  margin-top: 8px;
+}
+
+.comment-actions .btn {
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.comment-actions .btn + .btn {
+  margin-left: 8px;
+}
+
+/* --- 댓글 작성 폼 --- */
+.comment-form {
+  background-color: #fff;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  margin-top: 20px;
+}
+
+.comment-form h4 {
+  margin-bottom: 12px;
+}
+
+.comment-form button {
+  display: block;
+  margin-top: 10px;
 }

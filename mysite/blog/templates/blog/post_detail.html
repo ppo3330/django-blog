@@ -1,39 +1,50 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'blog/style.css' %}">
 
-<h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
+<div class="post-detail">
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
 
-<hr>
+    <hr>
 
-<p>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</p>
+    <p>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</p>
 
-<a href="{% url 'post_edit' post.pk %}">수정</a> |
-<a href="{% url 'post_delete' post.pk %}">삭제</a> |
-<a href="{% url 'post_list' %}">목록으로</a>
+    <div class="post-actions">
+        <a href="{% url 'post_edit' post.pk %}">수정</a> |
+        <a href="{% url 'post_delete' post.pk %}">삭제</a> |
+        <a href="{% url 'post_list' %}">목록으로</a>
+    </div>
 
-<hr>
-<h3>댓글</h3>
+    <hr>
 
-<!-- 댓글 목록 -->
-{% for comment in comments %}
-    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd;">
-        <p><strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }})</p>
-        <p>{{ comment.content }}</p>
+    <h3>댓글</h3>
+    <div class="comment-section">
+        {% for comment in comments %}
+            <div class="comment-box">
+                <p class="comment-meta">
+                    <strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }})
+                </p>
+                <p>{{ comment.content }}</p>
 
-        <form action="{% url 'comment_delete' comment.pk %}" method="POST" style="display:inline;">
+                <div class="comment-actions">
+                    <a href="{% url 'comment_edit' post.pk comment.pk %}" class="btn btn-secondary">수정</a>
+                    <form action="{% url 'comment_delete' comment.pk %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">삭제</button>
+                    </form>
+                </div>
+            </div>
+        {% empty %}
+            <p>아직 댓글이 없습니다.</p>
+        {% endfor %}
+    </div>
+
+    <div class="comment-form">
+        <h4>댓글 작성하기</h4>
+        <form method="POST">
             {% csrf_token %}
-            <button type="submit" style="color:red;">삭제</button>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">댓글 등록</button>
         </form>
     </div>
-{% empty %}
-    <p>아직 댓글이 없습니다.</p>
-{% endfor %}
-
-<!-- 댓글 작성 폼 -->
-<h4>댓글 작성하기</h4>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">댓글 등록</button>
-</form>
+</div>
