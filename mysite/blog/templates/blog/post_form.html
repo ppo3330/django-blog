@@ -1,12 +1,19 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+{% extends 'base.html' %}
 
-<h1>{% if form.instance.pk %}글 수정{% else %}새 글 작성{% endif %}</h1>
+{% block content %}
+<div class="post-detail">
+  <h1>{% if form.instance.pk %}글 수정{% else %}새 글 작성{% endif %}</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">{% if form.instance.pk %}수정 완료{% else %}작성{% endif %}</button>
-</form>
+  <form method="POST" class="post-form">
+      {% csrf_token %}
+      {{ form.as_p }}
 
-<a href="{% url 'post_list' %}">취소</a>
+      <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+              {% if form.instance.pk %}수정 완료{% else %}작성{% endif %}
+          </button>
+          <a href="{% url 'post_list' %}" class="btn btn-secondary">취소</a>
+      </div>
+  </form>
+</div>
+{% endblock %}

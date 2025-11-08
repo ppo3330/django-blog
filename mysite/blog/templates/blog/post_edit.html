@@ -1,11 +1,12 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+{% extends 'base.html' %}
 
+{% block content %}
 <h1>글 수정하기</h1>
 
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">수정 완료</button>
-    <a href="{% url 'post_detail' post.pk %}">취소</a>
+    <button type="submit">저장</button>
+    <a href="{% url 'post_detail' post.pk %}" >취소</a>
 </form>
+{% endblock %}

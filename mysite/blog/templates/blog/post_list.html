@@ -1,38 +1,44 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+{% extends 'base.html' %}
 
-<h1>블로그 글 목록</h1>
+{% block content %}
+<header>
+  <h1>블로그 글 목록</h1>
+</header>
 
 <!-- 검색창 -->
-<form method="GET" action="{% url 'post_list' %}">
-    <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
-    <button type="submit">검색</button>
+<form method="GET" action="{% url 'post_list' %}" style="margin-bottom: 24px;">
+  <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
+  <button type="submit" class="btn-primary">검색</button>
 </form>
 
 <!-- 글 목록 -->
 {% for post in page_obj %}
-    <div>
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.content|truncatewords:20 }}</p>
-        <hr>
-    </div>
+  <div class="post-card">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.content|truncatewords:20 }}</p>
+  </div>
 {% empty %}
-    <p>아직 작성된 글이 없습니다.</p>
+  <p>아직 작성된 글이 없습니다.</p>
 {% endfor %}
 
 <!-- 페이지네이션 -->
-<div>
-    {% if page_obj.has_previous %}
-        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">이전</a>
-    {% endif %}
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">이전</a>
+  {% endif %}
 
-    <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  <span class="current">페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
 
-    {% if page_obj.has_next %}
-        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}">다음</a>
-    {% endif %}
+  {% if page_obj.has_next %}
+    <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}">다음</a>
+  {% endif %}
 </div>
 
-<hr>
+<div style="margin-top: 24px; text-align: right;">
+  <a href="{% url 'post_new' %}" class="btn-primary">새 글 작성</a>
+</div>
 
-<a href="{% url 'post_new' %}">새 글 작성</a>
+<footer>
+  <p>© 2025 My Blog</p>
+</footer>
+{% endblock %}

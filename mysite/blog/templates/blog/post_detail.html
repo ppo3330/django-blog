@@ -1,43 +1,40 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
 
 <div class="post-detail">
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
 
-    <hr>
-
     <p>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</p>
 
     <div class="post-actions">
-        <a href="{% url 'post_edit' post.pk %}">수정</a> |
-        <a href="{% url 'post_delete' post.pk %}">삭제</a> |
-        <a href="{% url 'post_list' %}">목록으로</a>
+        <a href="{% url 'post_edit' post.pk %}" class="btn btn-secondary">수정</a> |
+        <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">삭제</a> |
+        <a href="{% url 'post_list' %}" class="btn btn-secondary">목록으로</a>
     </div>
 
     <hr>
 
-    <h3>댓글</h3>
     <div class="comment-section">
         {% for comment in comments %}
-            <div class="comment-box">
-                <p class="comment-meta">
-                    <strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }})
-                </p>
-                <p>{{ comment.content }}</p>
+        <div class="comment-box">
+            <p class="comment-meta">
+            <strong>{{ comment.author }}</strong> • {{ comment.created_at|date:"Y-m-d H:i" }}
+            </p>
+            <p>{{ comment.content }}</p>
 
-                <div class="comment-actions">
-                    <a href="{% url 'comment_edit' post.pk comment.pk %}" class="btn btn-secondary">수정</a>
-                    <form action="{% url 'comment_delete' comment.pk %}" method="POST" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">삭제</button>
-                    </form>
-                </div>
+            <div class="comment-actions">
+                <a href="{% url 'comment_edit' post.pk comment.pk %}" class="btn btn-secondary">수정</a>
+                <form action="{% url 'comment_delete' comment.pk %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">삭제</button>
+                </form>
             </div>
+        </div>
         {% empty %}
-            <p>아직 댓글이 없습니다.</p>
+        <p>아직 댓글이 없습니다.</p>
         {% endfor %}
-    </div>
+  </div>
 
     <div class="comment-form">
         <h4>댓글 작성하기</h4>
@@ -48,3 +45,5 @@
         </form>
     </div>
 </div>
+
+{% endblock %}

@@ -1,11 +1,15 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-detail">
+  <h1>정말 삭제하시겠어요?</h1>
+  <p>글 제목: <strong>{{ post.title }}</strong></p>
 
-<h1>정말 삭제하시겠어요?</h1>
-<p>글 제목: <strong>{{ post.title }}</strong></p>
-
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">삭제</button>
-    <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">취소</a>
-</form>
+  <form method="POST" class="post-form">
+      {% csrf_token %}
+      <div class="form-actions">
+          <button type="submit" class="btn btn-danger">삭제</button>
+          <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">취소</a>
+      </div>
+  </form>
+</div>
+{% endblock %}
