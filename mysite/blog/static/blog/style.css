@@ -66,18 +66,21 @@ textarea:focus {
 }
 
 /* --- 버튼 스타일 통일 --- */
-button.btn {
+a.btn, button.btn {
   display: inline-block;
-  padding: 8px 14px;
+  padding: 2px 6px;
   border-radius: 8px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-align: center;
   border: none;
-  background-color: #6366f1;
+  line-height: 1.4;
+  vertical-align: middle;
+  box-sizing: border-box; 
 }
 
 a.btn:hover, button.btn:hover {
@@ -103,12 +106,13 @@ a.btn:hover, button.btn:hover {
 }
 
 .btn-danger {
-  background-color: #e74c3c;
+  background-color: #da3421;
 }
 
 .btn-danger:hover {
-  background-color: #c0392b;
+  background-color: rgba(210, 63, 46, 0.888);
 }
+
 
 
 /* --- 포스트 카드형 스타일 --- */

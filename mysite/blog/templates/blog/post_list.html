@@ -8,7 +8,6 @@
 <!-- 검색창 -->
 <form method="GET" action="{% url 'post_list' %}" style="margin-bottom: 24px;">
   <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
-  <button type="submit" class="btn-primary">검색</button>
 </form>
 
 <!-- 글 목록 -->
@@ -35,7 +34,7 @@
 </div>
 
 <div style="margin-top: 24px; text-align: right;">
-  <a href="{% url 'post_new' %}" class="btn-primary">새 글 작성</a>
+  <a href="{% url 'post_new' %}">새 글 작성</a>
 </div>
 
 <footer>

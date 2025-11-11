@@ -8,8 +8,8 @@
     <p>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</p>
 
     <div class="post-actions">
-        <a href="{% url 'post_edit' post.pk %}" class="btn btn-secondary">수정</a> |
-        <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">삭제</a> |
+        <a href="{% url 'post_edit' post.pk %}" class="btn btn-secondary">수정</a>|
+        <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">삭제</a>|
         <a href="{% url 'post_list' %}" class="btn btn-secondary">목록으로</a>
     </div>
 
@@ -41,7 +41,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">댓글 등록</button>
+            <button type="submit" class="btn btn-primary">등록</button>
         </form>
     </div>
 </div>

@@ -6,7 +6,7 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">저장</button>
-    <a href="{% url 'post_detail' post.pk %}" >취소</a>
+    <button type="submit" class = "btn btn-primary">저장</button>
+    <a href="{% url 'post_detail' post.pk %}" class="btn btn-danger">취소</a>
 </form>
 {% endblock %}

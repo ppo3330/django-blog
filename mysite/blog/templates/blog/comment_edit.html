@@ -9,9 +9,7 @@
 
       <div class="form-actions">
           <button class="btn btn-primary">저장</button>
-          <button class="btn btn-secondary">
-            <a href="{% url 'post_detail' post.pk %}">취소</a>
-          </button>
+            <a href="{% url 'post_detail' post.pk %}" class = "btn btn-danger">취소</a>
       </div>
   </form>
 </div>
