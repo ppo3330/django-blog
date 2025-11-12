@@ -32,30 +32,6 @@ Python과 Django의 핵심 기능을 연습하면서 실제 웹 서비스 형태
 
 ---
 
-# 프로젝트 구조
-
-junseok-django-blog/
-├── mysite/ # Django 프로젝트 폴더
-│ ├── settings.py
-│ ├── urls.py
-│ └── ...
-├── blog/ # 블로그 앱
-│ ├── models.py
-│ ├── views.py
-│ ├── urls.py
-│ ├── templates/
-│ │ └── blog/
-│ │ ├── post_list.html
-│ │ ├── post_detail.html
-│ │ ├── post_form.html
-│ │ ├── post_delete.html
-│ │ └── comment_edit.html
-│ └── static/
-│ └── blog/style.css
-└── manage.py
-
----
-
 # 실행 방법
 
 bash
