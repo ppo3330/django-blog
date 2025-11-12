@@ -53,13 +53,13 @@ python manage.py runserver
 
 ---
 
-# 실행 방법
+# 학습한 내용
 
-Django의 MVC 구조 (Model-View-Template)
-ORM을 활용한 데이터베이스 조작
-URL routing과 view 연결
-Template 상속(base.html)
-GitHub를 통한 버전 관리 및 협업 흐름 익히기
+- Django의 MVC 구조 (Model-View-Template)
+- ORM을 활용한 데이터베이스 조작
+- URL routing과 view 연결
+- Template 상속(base.html)
+- GitHub를 통한 버전 관리 및 협업 흐름 익히기
 
 ---
 
