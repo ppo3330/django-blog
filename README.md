@@ -24,6 +24,8 @@ Python과 Django의 핵심 기능을 연습하면서 실제 웹 서비스 형태
 # 블로그 미리보기
 ![블로그 미리보기](https://raw.githubusercontent.com/ppo3330/junseok-django-blog/main/screenshot.PNG)
 
+---
+
 # 기술 스택
 
  사용 기술 
